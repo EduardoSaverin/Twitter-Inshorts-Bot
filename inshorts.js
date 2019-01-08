@@ -1,5 +1,5 @@
 const inshorts = require("./Inshorts-API").init();
-const categories = ['national','business','sports','world','politics','technology','startup','entertainment','miscellaneous'];
+const categories = ['national', 'business', 'sports', 'world', 'politics','science', 'technology', 'startup', 'entertainment','automobile', 'miscellaneous','hatke'];
 const Posts = require('./mongo');
 const crypto = require("crypto");
 const Tweet = require('./twitter');

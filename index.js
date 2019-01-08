@@ -10,4 +10,5 @@ function launchRocket(){
         });
     },1000*60*10); // Keep running after every 10 minutes.
 }
+Inshorts();
 launchRocket();
