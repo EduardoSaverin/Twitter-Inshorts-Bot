@@ -4,6 +4,7 @@ const CardSchema = new mongo.Schema({
     headline: { type: String, required: true },
     body: { type: String },
     image: { type: String },
-    read_more: { type: String }
+    read_more: { type: String },
+    posted_on: { type: mongo.SchemaTypes.Date, required: true, default: Date.now }
 });
 module.exports = mongo.model('news', CardSchema);

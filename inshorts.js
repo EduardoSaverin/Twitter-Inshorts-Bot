@@ -8,7 +8,7 @@ const News = require('./CardsSchema');
 function newsHandler(result) {
     result && Object.keys(result).forEach(async (item, index) => {
         logger.info('Running for category : ' + this.category);
-        let { headline, body, read_more, category, image } = result[item];
+        let { headline, body, read_more, category, image, posted_on } = result[item];
 
         let digest = getHash(item);
         let url = getPathFromUrl(read_more);
@@ -20,14 +20,14 @@ function newsHandler(result) {
         await Posts.find({ category: this.category, ids: { "$in": [digest] } }).then((response) => {
             if (response && response.length == 0) {
                 Posts.findOneAndUpdate({ category: this.category }, { $push: { ids: digest } }, { upsert: true }).then(async (post) => {
-                    new News({ 'headline': headline, 'body': body, 'category': category, 'read_more': url, 'image': image }).save().then(response => {
+                    new News({ 'headline': headline, 'body': body, 'category': category, 'read_more': url, 'image': image, posted_on }).save().then(response => {
                         return;
                     }).catch(error => {
                         logger.error('Error in Saving News', error);
                         return;
                     })
-                    await Tweet({ headline, url }).then((response) => {
-                    });
+                    // await Tweet({ headline, url }).then((response) => {
+                    // });
                 });
             }
         });

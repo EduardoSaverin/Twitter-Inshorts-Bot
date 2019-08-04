@@ -67,6 +67,10 @@ var getNews = function () {
                         $(element).find('a.source').each(function (i, elem) {
                             newsObj['read_more'] = $(this).attr('href');
                         });
+                        // Posted On
+                        $(element).find('[itemprop="datePublished"]').each(function (i, elem) {
+                            newsObj['posted_on'] = $(this).attr('content');
+                        });
                         result[i] = newsObj;
                     });
                     sendResponse(result);
