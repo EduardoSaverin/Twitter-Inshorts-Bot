@@ -5,3 +5,13 @@
 A Twitter News Bot Written in NodeJS
 
 To see it in action see all posts made by this bot at [Twitter](https://twitter.com/free_style_dev)
+
+Create a file `constants.js` with following twitter keys : 
+```
+module.exports = {
+    consumer_key: '',
+    consumer_secret: '',
+    access_token_key: '',
+    access_token_secret: ''
+}
+```
