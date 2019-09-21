@@ -39,7 +39,6 @@ var getNews = function () {
                     reject("Error: Domain name error");
                 } else if (response.statusCode == 200) {
                     var $ = cheerio.load(body);
-                    let index = 0;
                     let elements = $("div.news-card");
                     let result = {};
                     elements.each(function (i, element) {
@@ -73,10 +72,7 @@ var getNews = function () {
                         });
                         result[i] = newsObj;
                     });
-                    sendResponse(result);
-                    function sendResponse(obj) {
-                        resolve(obj);
-                    }
+                    resolve(result);
                 } else {
                     reject(response);
                 }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoUrl = "mongodb://root:12345@localhost:27017/posts";
+const mongoUrl = "mongodb://root:12345@127.0.0.1:27017/posts"; // localhost sometimes throws TransientError
 const logger = require('./logger');
 // Connect to MongoDB URL
 mongoose.Promise = global.Promise;
@@ -9,6 +9,7 @@ mongoose.connect(mongoUrl, { auth: { authdb: "admin" }, useNewUrlParser: true })
     console.log('Connected to Mongo');
 }).catch(function (err) {
     if (err) {
+        console.error('Failed to Connect Mongo. See logs for more details.');
         logger.error(err);
         process.exit(0);
     }

@@ -19,15 +19,18 @@ function newsHandler(result) {
         }
         await Posts.find({ category: this.category, ids: { "$in": [digest] } }).then((response) => {
             if (response && response.length == 0) {
+                // Check if news already posted
                 Posts.findOneAndUpdate({ category: this.category }, { $push: { ids: digest } }, { upsert: true }).then(async (post) => {
+                    // Save Each News
                     new News({ 'headline': headline, 'body': body, 'category': category, 'read_more': url, 'image': image, posted_on }).save().then(response => {
                         return;
                     }).catch(error => {
                         logger.error('Error in Saving News', error);
                         return;
                     })
-                    // await Tweet({ headline, url }).then((response) => {
-                    // });
+                    // Tweet Each News
+                    await Tweet({ headline, url }).then((response) => {
+                    });
                 });
             }
         });
